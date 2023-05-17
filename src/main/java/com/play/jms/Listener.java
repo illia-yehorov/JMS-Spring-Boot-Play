@@ -14,23 +14,23 @@ public class Listener {
     private static final Logger LOGGER = LoggerFactory.getLogger(Listener.class);
 
     @JmsListener(destination = TOPIC_DESTINATION, containerFactory = "myFactory")
-    public void topic1(String string) {
-        LOGGER.info("[topic1] Received message <" + string + ">");
+    public void topic1(Event event) {
+        LOGGER.info("[topic1] Received event object <" + event.getMessage() + ">");
     }
 
     @JmsListener(destination = TOPIC_DESTINATION, containerFactory = "myFactory")
-    public void topic2(String string) {
-        LOGGER.info("[topic2] Received message <" + string + ">");
+    public void topic2(Event event) {
+        LOGGER.info("[topic1] Received event object <" + event.getMessage() + ">");
     }
 
     @JmsListener(destination = TOPIC_DESTINATION, containerFactory = "myFactory")
-    public void topic3(String string) {
-        LOGGER.info("[topic3] Received message <" + string + ">");
+    public void topic3(Event event) {
+        LOGGER.info("[topic1] Received event object <" + event.getMessage() + ">");
     }
 
     @JmsListener(destination = QUEUE_DESTINATION, containerFactory = "myFactory")
-    public void queue(String string) {
-        LOGGER.info("[queue] Received message <" + string + ">");
+    public void queue(Event event) {
+        LOGGER.info("[queue] Received event object <" + event.getMessage() + ">");
     }
 
 }

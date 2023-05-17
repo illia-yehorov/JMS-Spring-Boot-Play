@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +35,7 @@ public class Controller {
         if (number < 0) return;
         for (int i = 0; i < number; i++) {
             String message = "id" + queueMessageId++ + ", " + event;
-            jmsTemplate.convertAndSend(QUEUE_DESTINATION, message);
+            jmsTemplate.convertAndSend(QUEUE_DESTINATION, new Event(queueMessageId, message));
             LOGGER.info("Sent message to queue: " + message);
         }
     }
@@ -46,7 +45,7 @@ public class Controller {
         if (number < 0) return;
         for (int i = 0; i < number; i++) {
             String message = "id" + topicMessageId++ + ", " + event;
-            jmsTemplate.convertAndSend(TOPIC_DESTINATION, message);
+            jmsTemplate.convertAndSend(TOPIC_DESTINATION, new Event(topicMessageId, message));
             LOGGER.info("message sent to topic: " + message);
         }
     }
