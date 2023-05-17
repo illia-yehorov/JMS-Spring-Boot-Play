@@ -1,9 +1,9 @@
 
 package com.play;
 
+import javax.jms.ConnectionFactory;
+
 import com.rabbitmq.jms.admin.RMQConnectionFactory;
-import jakarta.jms.ConnectionFactory;
-import jakarta.jms.JMSException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +24,6 @@ public class Application {
 
     public static final String TOPIC_DESTINATION = "topic111";
     public static final String QUEUE_DESTINATION = "queue222";
-
 
     @Bean
     public JmsListenerContainerFactory<?> myFactory(ConnectionFactory connectionFactory,
