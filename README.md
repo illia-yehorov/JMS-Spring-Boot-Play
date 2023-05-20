@@ -9,7 +9,7 @@ $ docker-compose up
 Open RabbitMQ dashboard [http://localhost:15672](http://localhost:15672) with `guest / guest`.
 
 
-## Sending messages
+## Sending messages examples
 
 
 ```bash
