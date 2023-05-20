@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - "./rabbit_enabled_plugins:/etc/rabbitmq/enabled_plugins"
+
+  sender:
+    build: Sender/.
+    ports:
+      - 58080:58080
+    depends_on:
+      - rabbitmq
+
+  listener:
+    build: Listener/.
+    depends_on:
+      - rabbitmq
