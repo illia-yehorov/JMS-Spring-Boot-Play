@@ -11,13 +11,13 @@ services:
       - "./rabbit_enabled_plugins:/etc/rabbitmq/enabled_plugins"
 
   sender:
-    build: Sender/.
+    build: sender/.
     ports:
       - 58080:58080
     depends_on:
       - rabbitmq
 
   listener:
-    build: Listener/.
+    build: listener/.
     depends_on:
       - rabbitmq
