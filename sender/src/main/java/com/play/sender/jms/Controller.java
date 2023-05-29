@@ -4,10 +4,10 @@
  * decompiled, transferred etc. without the explicitly written prior consent from EVRY.
  * Any use in violation of the said will be prosecuted and compensation will be claimed.
  */
-package com.play.jms.sender;
+package com.play.sender.jms;
 
-import static com.play.jms.sender.SenderApplication.QUEUE_DESTINATION;
-import static com.play.jms.sender.SenderApplication.TOPIC_DESTINATION;
+import static com.play.sender.SenderApplication.QUEUE_DESTINATION;
+import static com.play.sender.SenderApplication.TOPIC_DESTINATION;
 
 import com.play.common.Event;
 import lombok.extern.apachecommons.CommonsLog;
@@ -33,9 +33,8 @@ public class Controller {
     public void sendToQueue(@RequestParam String event, @RequestParam int number){
         if (number < 0) return;
         for (int i = 0; i < number; i++) {
-            String message = "id" + queueMessageId++ + ", " + event;
-            jmsTemplate.convertAndSend(QUEUE_DESTINATION, new Event(queueMessageId, message));
-            log.info("!Sent to queue: " + message);
+            jmsTemplate.convertAndSend(QUEUE_DESTINATION, new Event(queueMessageId++, event));
+            log.info("Sent to queue: " + event);
         }
     }
 
@@ -43,9 +42,8 @@ public class Controller {
     public void sendToTopic(@RequestParam String event, @RequestParam int number){
         if (number < 0) return;
         for (int i = 0; i < number; i++) {
-            String message = "id" + topicMessageId++ + ", " + event;
-            jmsTemplate.convertAndSend(TOPIC_DESTINATION, new Event(topicMessageId, message));
-            log.info("!Sent to topic: " + message);
+            jmsTemplate.convertAndSend(TOPIC_DESTINATION, new Event(topicMessageId++, event));
+            log.info("Sent to topic: " + event);
         }
     }
 

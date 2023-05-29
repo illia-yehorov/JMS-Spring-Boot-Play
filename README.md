@@ -19,3 +19,10 @@ curl --location "http://localhost:58080/jms/topic?event=stop&number=2"
 ```bash
 curl --location "http://localhost:58080/jms/queue?event=run&number=3"
 ```
+
+
+## Reading messages from archive
+
+```bash
+curl --location "http://localhost:58888/archive/events"
+```

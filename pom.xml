@@ -42,6 +42,7 @@
   <modules>
     <module>sender</module>
     <module>listener</module>
+    <module>archive</module>
     <module>common</module>
   </modules>
 

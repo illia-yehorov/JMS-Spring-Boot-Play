@@ -1,6 +1,7 @@
+server:
+  port : 58888
+
 spring:
-  jms:
-    pub-sub-domain: true
   profiles:
     default: standalone
   datasource:
@@ -29,8 +30,6 @@ spring:
   config:
     activate:
       on-profile: standalone
-  rabbitmq:
-    host: localhost
   datasource:
     url: jdbc:postgresql://localhost:5439/postgres
 
@@ -40,7 +39,5 @@ spring:
   config:
     activate:
       on-profile: docker
-  rabbitmq:
-    host: rabbitmq
   datasource:
     url: jdbc:postgresql://postgresdb:5432/postgres

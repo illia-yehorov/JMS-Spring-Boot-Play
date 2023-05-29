@@ -10,6 +10,18 @@ services:
     volumes:
       - "./rabbit_enabled_plugins:/etc/rabbitmq/enabled_plugins"
 
+  postgresdb:
+    image: postgres:11-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - .:/var/lib/postgresql/data
+    ports:
+      - '5439:5432'
+
   sender:
     build: sender/.
     ports:
@@ -21,3 +33,11 @@ services:
     build: listener/.
     depends_on:
       - rabbitmq
+      - postgresdb
+
+  archive:
+    build: archive/.
+    ports:
+      - 58888:58888
+    depends_on:
+      - postgresdb

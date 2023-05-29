@@ -1,5 +1,5 @@
 
-package com.play.jms.listener;
+package com.play.listener;
 
 import javax.jms.ConnectionFactory;
 
@@ -7,6 +7,7 @@ import com.rabbitmq.jms.admin.RMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,7 @@ import org.springframework.jms.support.converter.MessageType;
 
 @SpringBootApplication
 @EnableJms
+@EntityScan("com.*")
 public class ListenerApplication {
 
     @Value("${spring.rabbitmq.host}")

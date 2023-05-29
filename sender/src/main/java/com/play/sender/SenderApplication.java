@@ -1,5 +1,5 @@
 
-package com.play.jms.sender;
+package com.play.sender;
 
 import javax.jms.ConnectionFactory;
 
